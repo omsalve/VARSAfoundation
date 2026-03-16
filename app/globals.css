@@ -1,0 +1,111 @@
+/* ── Google Fonts must come before the Tailwind import ── */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@400;500;600&display=swap');
+
+/* ── Tailwind v4: single import replaces all three @tailwind directives ── */
+@import "tailwindcss";
+
+/* ── Custom design tokens (Tailwind v4 uses @theme, not tailwind.config.ts) ── */
+@theme {
+  /* Forest green palette */
+  --color-forest-50:  #f0faf0;
+  --color-forest-100: #d9f2d9;
+  --color-forest-200: #b3e5b3;
+  --color-forest-300: #7dce7d;
+  --color-forest-400: #4db04d;
+  --color-forest-500: #2d8c2d;
+  --color-forest-600: #1f6e1f;
+  --color-forest-700: #175217;
+  --color-forest-800: #113b11;
+  --color-forest-900: #0b260b;
+
+  /* Stone neutrals (extend defaults) */
+  --color-stone-50:  #fafaf9;
+  --color-stone-100: #f5f5f4;
+  --color-stone-200: #e7e5e4;
+  --color-stone-400: #a8a29e;
+  --color-stone-500: #78716c;
+  --color-stone-600: #57534e;
+  --color-stone-700: #44403c;
+  --color-stone-800: #292524;
+  --color-stone-900: #1c1917;
+
+  /* Amber accent */
+  --color-amber-400: #fbbf24;
+  --color-amber-500: #f59e0b;
+
+  /* Typography */
+  --font-display: 'Playfair Display', Georgia, serif;
+  --font-sans:    'DM Sans', system-ui, sans-serif;
+}
+
+/* ── Base layer: element-level defaults ── */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-white text-stone-700 antialiased;
+    font-family: var(--font-sans);
+  }
+
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    @apply text-stone-900;
+  }
+}
+
+/* ── Component layer: reusable utility classes ── */
+@layer components {
+  /* Consistent horizontal padding + max-width */
+  .section-container {
+    @apply max-w-6xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  /* Section vertical spacing */
+  .section-padding {
+    @apply py-16 md:py-24;
+  }
+
+  /* Primary filled button */
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2
+           text-white font-medium px-6 py-3 rounded-xl
+           transition-colors duration-200
+           focus:outline-none focus:ring-2 focus:ring-offset-2;
+    background-color: var(--color-forest-600);
+    font-family: var(--font-sans);
+  }
+  .btn-primary:hover  { background-color: var(--color-forest-700); }
+  .btn-primary:active { background-color: var(--color-forest-800); }
+
+  /* Outline / ghost button */
+  .btn-outline {
+    @apply inline-flex items-center justify-center gap-2
+           border-2 font-medium px-6 py-3 rounded-xl
+           transition-colors duration-200
+           focus:outline-none focus:ring-2 focus:ring-offset-2;
+    border-color: var(--color-forest-600);
+    color:        var(--color-forest-700);
+    font-family:  var(--font-sans);
+  }
+  .btn-outline:hover  { background-color: var(--color-forest-50); }
+  .btn-outline:active { background-color: var(--color-forest-100); }
+
+  /* Section heading */
+  .section-heading {
+    @apply text-3xl md:text-4xl font-bold text-stone-900 leading-tight;
+    font-family: var(--font-display);
+  }
+
+  /* Small uppercase label above headings */
+  .section-label {
+    @apply font-semibold text-sm uppercase tracking-widest;
+    color:       var(--color-forest-600);
+    font-family: var(--font-sans);
+  }
+
+  /* Card shadow utilities */
+  .shadow-card       { box-shadow: 0 2px 16px 0 rgb(0 0 0 / 0.07); }
+  .shadow-card-hover { box-shadow: 0 6px 32px 0 rgb(0 0 0 / 0.13); }
+}
