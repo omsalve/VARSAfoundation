@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, type Variants } from "framer-motion";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -19,26 +19,26 @@ const navLinks = [
   { label: "Get Involved", href: "#get-involved" },
 ];
 
-const mobileMenuVariants = {
+const mobileMenuVariants: Variants = {
   hidden: { opacity: 0, height: 0 },
   visible: {
     opacity: 1,
     height: "auto",
-    transition: { duration: 0.35, ease: [0.25, 0.46, 0.45, 0.94] as const },
+    transition: { duration: 0.35, ease: [0.25, 0.46, 0.45, 0.94] as [number, number, number, number] },
   },
   exit: {
     opacity: 0,
     height: 0,
-    transition: { duration: 0.25, ease: "easeIn" },
+    transition: { duration: 0.25, ease: "easeIn" as const },
   },
 };
 
-const mobileLinkVariants = {
+const mobileLinkVariants: Variants = {
   hidden: { opacity: 0, x: -16 },
   visible: (i: number) => ({
     opacity: 1,
     x: 0,
-    transition: { delay: i * 0.06, duration: 0.3, ease: "easeOut" },
+    transition: { delay: i * 0.06, duration: 0.3, ease: "easeOut" as const },
   }),
 };
 
